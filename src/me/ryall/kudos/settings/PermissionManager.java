@@ -45,39 +45,37 @@ public class PermissionManager
             hasPermission(_player, PERMISSIONS_PREFIX + "view");
     }
     
-    public boolean hasLovePermission(Player _player)
+    public boolean hasRankPermission(Player _player)
     {
         return hasGlobalPermission(_player) || 
-            hasPermission(_player, PERMISSIONS_PREFIX + "vote.*") ||
-            hasPermission(_player, PERMISSIONS_PREFIX + "vote.love");
+            hasPermission(_player, PERMISSIONS_PREFIX + "rank");
     }
     
+    public boolean hasListPermission(Player _player)
+    {
+        return hasGlobalPermission(_player) || 
+            hasPermission(_player, PERMISSIONS_PREFIX + "list");
+    }
+
     public boolean hasLikePermission(Player _player)
     {
         return hasGlobalPermission(_player) || 
-            hasPermission(_player, PERMISSIONS_PREFIX + "vote.*") ||
-            hasPermission(_player, PERMISSIONS_PREFIX + "vote.like");
+            hasPermission(_player, PERMISSIONS_PREFIX + "critique.*") ||
+            hasPermission(_player, PERMISSIONS_PREFIX + "critique.like");
     }
     
     public boolean hasForgetPermission(Player _player)
     {
         return hasGlobalPermission(_player) || 
-            hasPermission(_player, PERMISSIONS_PREFIX + "vote.*") ||
-            hasPermission(_player, PERMISSIONS_PREFIX + "vote.forget");
+            hasPermission(_player, PERMISSIONS_PREFIX + "critique.*") ||
+            hasPermission(_player, PERMISSIONS_PREFIX + "critique.forget");
     }
     
     public boolean hasDislikePermission(Player _player)
     {
         return hasGlobalPermission(_player) || 
-            hasPermission(_player, PERMISSIONS_PREFIX + "vote.*") ||
-            hasPermission(_player, PERMISSIONS_PREFIX + "vote.dislike");
-    }
-    
-    public boolean hasHatePermission(Player _player)
-    {
-        return hasGlobalPermission(_player) || 
-            hasPermission(_player, PERMISSIONS_PREFIX + "vote.*") ||
-            hasPermission(_player, PERMISSIONS_PREFIX + "vote.hate");
+            hasPermission(_player, PERMISSIONS_PREFIX + "critique.*") ||
+            hasPermission(_player, PERMISSIONS_PREFIX + "critique.dislike");
     }
 
     private boolean hasPermission(Player _player, String _permission)

@@ -1,7 +1,7 @@
 name: Kudos
 main: me.ryall.kudos.Kudos
 version: 1.0.0
-description: Reward skilled, helpful and friendly players.
+description: Influence player reputations with /like and /dislike.
 author: SirHedgehog
 commands:
     kudos:

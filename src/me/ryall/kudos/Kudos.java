@@ -1,10 +1,13 @@
 package me.ryall.kudos;
 
+import me.ryall.kudos.api.KudosInterface;
 import me.ryall.kudos.communication.CommunicationManager;
 import me.ryall.kudos.listeners.ServerListener;
 import me.ryall.kudos.settings.ConfigManager;
 import me.ryall.kudos.settings.PermissionManager;
 import me.ryall.kudos.system.KudosManager;
+
+import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -28,6 +31,11 @@ public class Kudos extends JavaPlugin
         return instance;
     }
 
+    public static KudosInterface getInterface()
+    {
+        return new KudosInterface();
+    }
+    
     public void onEnable()
     {
         instance = this;
@@ -60,6 +68,20 @@ public class Kudos extends JavaPlugin
         Player player = (_sender instanceof Player) ? (Player) _sender : null;
         
         return KudosManager.command(player, _label, _args);
+    }
+    
+    public Player findPlayer(String _name)
+    {
+        for (World world : getServer().getWorlds())
+        {
+            for (Player player : world.getPlayers())
+            {
+                if (player.getName().equalsIgnoreCase(_name))
+                    return player;
+            }
+        }
+
+        return null;
     }
     
     public ConfigManager getConfigManager()
