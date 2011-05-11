@@ -1,0 +1,15 @@
+name: Kudos
+main: me.ryall.kudos.Kudos
+version: 1.0.0
+description: Reward skilled, helpful and friendly players.
+author: SirHedgehog
+commands:
+    kudos:
+        description: Get the kudos level of a player or execute a kudos command.
+        usage: /kudos <player|command> [params]
+    like:
+        description: Like a player, adding to their kudos score.
+        usage: /like <player>
+    dislike:
+        description: Dislike a player, subtracting from their kudos score.
+        usage: /dislike <player>
