@@ -25,6 +25,8 @@ public class Kudos extends JavaPlugin
     private PermissionManager permissionManager;
     private CommunicationManager communicationManager;
     private ServerListener serverListener;
+    
+    private KudosManager kudosManager;
 
     public static Kudos get()
     {
@@ -45,6 +47,8 @@ public class Kudos extends JavaPlugin
         permissionManager = new PermissionManager();
         
         serverListener = new ServerListener();
+        
+        kudosManager = new KudosManager();
 
         registerEvents();
 
@@ -65,9 +69,15 @@ public class Kudos extends JavaPlugin
 
     public boolean onCommand(CommandSender _sender, Command _command, String _label, String[] _args)
     {
-        Player player = (_sender instanceof Player) ? (Player) _sender : null;
+        if (_label.equalsIgnoreCase("kudos") || _label.equalsIgnoreCase("like") || _label.equalsIgnoreCase("dislike"))
+        {
+            Player player = (_sender instanceof Player) ? (Player) _sender : null;
+            kudosManager.onCommand(player, _command, _label, _args);
         
-        return KudosManager.command(player, _label, _args);
+            return true;
+        }
+        
+        return false;
     }
     
     public Player findPlayer(String _name)
@@ -97,5 +107,10 @@ public class Kudos extends JavaPlugin
     public CommunicationManager getCommunicationManager()
     {
         return communicationManager;
+    }
+    
+    public KudosManager getManager()
+    {
+        return kudosManager;
     }
 }

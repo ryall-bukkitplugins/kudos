@@ -39,10 +39,10 @@ public class PermissionManager
             hasPermission(_player, PERMISSIONS_PREFIX + "set");
     }
     
-    public boolean hasViewPermission(Player _player)
+    public boolean hasReputationPermission(Player _player)
     {
         return hasGlobalPermission(_player) || 
-            hasPermission(_player, PERMISSIONS_PREFIX + "view");
+            hasPermission(_player, PERMISSIONS_PREFIX + "reputation");
     }
     
     public boolean hasRankPermission(Player _player)
@@ -51,31 +51,28 @@ public class PermissionManager
             hasPermission(_player, PERMISSIONS_PREFIX + "rank");
     }
     
-    public boolean hasListPermission(Player _player)
+    public boolean hasTopPermission(Player _player)
     {
         return hasGlobalPermission(_player) || 
-            hasPermission(_player, PERMISSIONS_PREFIX + "list");
+            hasPermission(_player, PERMISSIONS_PREFIX + "top");
     }
 
     public boolean hasLikePermission(Player _player)
     {
         return hasGlobalPermission(_player) || 
-            hasPermission(_player, PERMISSIONS_PREFIX + "critique.*") ||
-            hasPermission(_player, PERMISSIONS_PREFIX + "critique.like");
+            hasPermission(_player, PERMISSIONS_PREFIX + "like");
     }
     
-    public boolean hasForgetPermission(Player _player)
+    public boolean hasNeutralPermission(Player _player)
     {
         return hasGlobalPermission(_player) || 
-            hasPermission(_player, PERMISSIONS_PREFIX + "critique.*") ||
-            hasPermission(_player, PERMISSIONS_PREFIX + "critique.forget");
+            hasPermission(_player, PERMISSIONS_PREFIX + "neutral");
     }
     
     public boolean hasDislikePermission(Player _player)
     {
         return hasGlobalPermission(_player) || 
-            hasPermission(_player, PERMISSIONS_PREFIX + "critique.*") ||
-            hasPermission(_player, PERMISSIONS_PREFIX + "critique.dislike");
+            hasPermission(_player, PERMISSIONS_PREFIX + "dislike");
     }
 
     private boolean hasPermission(Player _player, String _permission)

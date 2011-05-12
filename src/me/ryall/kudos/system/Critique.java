@@ -13,9 +13,19 @@ public class Critique
         comment = _comment;
     }
     
+    public void setName(String _name)
+    {
+        name = _name;
+    }
+
     public String getName()
     {
         return name;
+    }
+    
+    public void setChange(double _change)
+    {
+        change = _change;
     }
     
     public double getChange()
@@ -26,5 +36,10 @@ public class Critique
     public String getComment()
     {
         return comment;
+    }
+    
+    public void setComment(String _comment)
+    {
+        comment = _comment;
     }
 }
