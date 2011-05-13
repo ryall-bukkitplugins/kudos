@@ -14,16 +14,59 @@ public class KudosManager
         // All commands require arguments so show the help if we have none.
         if (_args.length < 0)
         {
+            String action = _args[0];
+            
             // Turn shortcut commands into Kudos commands.
             /*if (!_label.equalsIgnoreCase("kudos"))
             {
                 _args = new String[] { _label, _args };
             }*/
             
-            
+            if (action.equalsIgnoreCase("like"))
+                likeAction(_player, null, null);
+            else if (action.equalsIgnoreCase("dislike"))
+                dislikeAction(_player, null, null);
+            else if (action.equalsIgnoreCase("neutral"))
+                neutralAction(_player, null);
         }
         else
             showHelp(_player);
+    }
+
+    private void likeAction(Player _reviewer, Player _reviewee, String _comment)
+    {
+        double min = Kudos.get().getConfigManager().getLikeMinimumReputation();
+        double change = Kudos.get().getConfigManager().getLikeReputationIncrease();
+        
+        review(_reviewer, _reviewee, _comment, min, change);
+    }
+    
+    private void dislikeAction(Player _reviewer, Player _reviewee, String _comment)
+    {
+        double min = Kudos.get().getConfigManager().getDislikeMinimumReputation();
+        double change = -Kudos.get().getConfigManager().getDislikeReputationDecrease();
+        
+        review(_reviewer, _reviewee, _comment, min, change);
+    }
+    
+    private void neutralAction(Player _reviewer, Player _reviewee)
+    {
+        Reputation reputation = Kudos.get().getDatabaseManager().getReputation(_reviewee);
+        
+        reputation.removeReview(_reviewer);
+    }
+    
+    private void review(Player _reviewer, Player _reviewee, String _comment, double _min, double _change) 
+    {
+        Reputation reviewerReputation = Kudos.get().getDatabaseManager().getReputation(_reviewer);
+        Reputation revieweeReputation = Kudos.get().getDatabaseManager().getReputation(_reviewee);
+        
+        if (reviewerReputation.getScore() > _min)
+        {
+            revieweeReputation.review(_reviewer, _change, _comment);
+        }
+        else
+            Kudos.get().getCommunicationManager().error(_reviewer, "You don't have enough reputation to do that.");
     }
 
     private void showHelp(Player _player)
@@ -32,7 +75,7 @@ public class KudosManager
         CommunicationManager cm = Kudos.get().getCommunicationManager();
         
         if (pm.hasSetPermission(_player))
-            cm.command(_player, "/kudos set <player> <rep>", "Override a player's reputation.");
+            cm.command(_player, "/kudos set <player> <rep> [msg]", "Override a player's reputation.");
         
         if (pm.hasReputationPermission(_player))
             cm.command(_player, "/kudos rep [player]", "Get a player's reputation.");
@@ -44,10 +87,10 @@ public class KudosManager
             cm.command(_player, "/kudos top [num]", "Get the top [num] player's by reputation.");
         
         if (pm.hasLikePermission(_player))
-            cm.command(_player, "/like <player>", "Positively influence a player's reputation.");
+            cm.command(_player, "/like <player> [msg]", "Positively influence a player's reputation.");
         
         if (pm.hasDislikePermission(_player))
-            cm.command(_player, "/dislike <player>", "Negatively influence a player's reputation.");
+            cm.command(_player, "/dislike <player> [msg]", "Negatively influence a player's reputation.");
     }
 
     /*private void critique(Player _player, String _label, String[] _args, double _change)

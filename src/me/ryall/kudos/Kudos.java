@@ -2,6 +2,7 @@ package me.ryall.kudos;
 
 import me.ryall.kudos.api.KudosInterface;
 import me.ryall.kudos.communication.CommunicationManager;
+import me.ryall.kudos.database.DatabaseManager;
 import me.ryall.kudos.listeners.ServerListener;
 import me.ryall.kudos.settings.ConfigManager;
 import me.ryall.kudos.settings.PermissionManager;
@@ -25,7 +26,7 @@ public class Kudos extends JavaPlugin
     private PermissionManager permissionManager;
     private CommunicationManager communicationManager;
     private ServerListener serverListener;
-    
+    private DatabaseManager databaseManager;
     private KudosManager kudosManager;
 
     public static Kudos get()
@@ -48,6 +49,7 @@ public class Kudos extends JavaPlugin
         
         serverListener = new ServerListener();
         
+        databaseManager = new DatabaseManager();
         kudosManager = new KudosManager();
 
         registerEvents();
@@ -107,6 +109,11 @@ public class Kudos extends JavaPlugin
     public CommunicationManager getCommunicationManager()
     {
         return communicationManager;
+    }
+    
+    public DatabaseManager getDatabaseManager()
+    {
+        return databaseManager;
     }
     
     public KudosManager getManager()

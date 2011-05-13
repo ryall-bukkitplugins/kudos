@@ -1,12 +1,12 @@
 package me.ryall.kudos.system;
 
-public class Critique
+public class Review
 {
     private String name;
     private double change;
     private String comment;
     
-    public Critique(String _name, double _change, String _comment)
+    public Review(String _name, double _change, String _comment)
     {
         name = _name;
         change = _change;

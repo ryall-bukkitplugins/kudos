@@ -1,24 +1,22 @@
 package me.ryall.kudos.database;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import me.ryall.kudos.Kudos;
+import org.bukkit.entity.Player;
 
-public class Database
+import me.ryall.kudos.system.Reputation;
+
+public class DatabaseManager
 {
-    private Connection connection;
+    //private Connection connection;
     
-    public Database() throws Exception
+    public DatabaseManager()
     {
-        Class.forName("org.sqlite.JDBC");
-        connection = DriverManager.getConnection("jdbc:sqlite:" + Kudos.PLUGIN_NAME + ".db");
+        /*Class.forName("org.sqlite.JDBC");
+        connection = DriverManager.getConnection("jdbc:sqlite:" + Kudos.PLUGIN_NAME + ".db");*/
     }
     
     public void startup()
     {
-        try
+        /*try
         {
             PreparedStatement ps = connection.prepareStatement
             (
@@ -42,18 +40,23 @@ public class Database
         catch (SQLException ex)
         {
             Kudos.get().getCommunicationManager().logError("Could not initialise the database: " + ex.getMessage());
-        }
+        }*/
     }
     
     public void shutdown()
     {
-        try
+        /*try
         {
             connection.close();
         } 
         catch (SQLException ex)
         {
             Kudos.get().getCommunicationManager().logError("Could not close the database connection: " + ex.getMessage());
-        }
+        }*/
+    }
+
+    public Reputation getReputation(Player _player)
+    {
+        return null;
     }
 }

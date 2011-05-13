@@ -13,4 +13,24 @@ public class ConfigManager
         config = Kudos.get().getConfiguration();
         config.load();
     }
+
+    public double getLikeMinimumReputation()
+    {
+        return config.getDouble("Like.MinimumRequiredReputation", 0);
+    }
+
+    public double getLikeReputationIncrease()
+    {
+        return config.getDouble("Like.ReputationIncrease", 1);
+    }
+
+    public double getDislikeMinimumReputation()
+    {
+        return config.getDouble("Dislike.MinimumRequiredReputation", 0);
+    }
+
+    public double getDislikeReputationDecrease()
+    {
+        return config.getDouble("Dislike.ReputationDecrease", 1);
+    }
 }
